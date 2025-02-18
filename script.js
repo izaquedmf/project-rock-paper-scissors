@@ -14,4 +14,17 @@ function getComputerChoice(){
     }
 }
 
+function getHumanChoice(){
+    const human_choice = prompt("choose: rock, paper or scissors?")
+    
+    if( human_choice.toLowerCase() === 'rock' || human_choice.toLowerCase() === 'paper' || human_choice.toLowerCase() ==='scissors' ){
+        return human_choice.toLowerCase();
+    }
+    else{
+        throw new Error("invalid choice");
+    }
+    
+}
 
+let humanScore = 0;
+let computerScore = 0;

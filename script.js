@@ -76,7 +76,7 @@ function playGame(){
     }else if(humanScore < computerScore) {
         console.log("Computer beats you, but can try another time!");
     }else{
-        console.log("Almost there! It was a Draw! Yoy can try again.")
+        console.log("Almost there! It was a Draw! You can try again.")
     }    
 }
 

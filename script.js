@@ -1,4 +1,3 @@
-console.log("Hello World");
 
 function getComputerChoice(){
     const choice = Math.floor(Math.random()*3);
@@ -15,7 +14,7 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    const human_choice = prompt("choose: rock, paper or scissors?")
+    const human_choice = prompt("Choose: rock, paper or scissors?")
     
     if( human_choice.toLowerCase() === 'rock' || human_choice.toLowerCase() === 'paper' || human_choice.toLowerCase() ==='scissors' ){
         return human_choice.toLowerCase();
@@ -33,33 +32,52 @@ function playRound(humanChoice, computerChoice){
     if(humanChoice === 'rock'){
         if(computerChoice === 'paper'){
             computerScore += 1;
-            console.log(`Computer choice: ${computerChoice}.\n You Lose! ${computerChoice} beats ${humanChoice}`);
+            console.log(`Computer choice: ${computerChoice}.\nYou Lose! ${computerChoice} beats ${humanChoice}`);
         }else if(computerChoice === 'scissors'){
             humanScore += 1;
-            console.log(`Computer choice: ${computerChoice}.\n You Won! ${humanChoice} beats ${computerChoice}`);
+            console.log(`Computer choice: ${computerChoice}.\nYou Won! ${humanChoice} beats ${computerChoice}`);
         }else{
-            console.log("It was a draw! Both choose Rock");
+            console.log(`Computer choice: ${computerChoice}.\nIt was a Draw! Both chose ${humanChoice}`);
         }
     }else if(humanChoice === 'paper'){
         if(computerChoice === 'paper'){
-            console.log("It was a draw! Both choose Rock");            
+            console.log(`Computer choice: ${computerChoice}.\nIt was a Draw! Both chose ${humanChoice}`);           
         }else if(computerChoice === 'scissors'){
             computerScore += 1;
-            console.log(`Computer choice: ${computerChoice}.\n You Lose! ${computerChoice} beats ${humanChoice}`);         
+            console.log(`Computer choice: ${computerChoice}.\nYou Lose! ${computerChoice} beats ${humanChoice}`);         
         }else{
             humanScore += 1;
-            console.log(`Computer choice: ${computerChoice}.\n You Won! ${humanChoice} beats ${computerChoice}`);         
+            console.log(`Computer choice: ${computerChoice}.\nYou Won! ${humanChoice} beats ${computerChoice}`);         
         }
     }else{
         if(computerChoice === 'paper'){
             humanScore += 1;
-            console.log(`Computer choice: ${computerChoice}.\n You Won! ${humanChoice} beats ${computerChoice}`);                   
+            console.log(`Computer choice: ${computerChoice}.\nYou Won! ${humanChoice} beats ${computerChoice}`);                   
         }else if(computerChoice === 'scissors'){
-            console.log("It was a draw! Both choose Rock");
+            console.log(`Computer choice: ${computerChoice}.\nIt was a Draw! Both chose ${humanChoice}`);
                      
         }else{
             computerScore += 1;
-            console.log(`Computer choice: ${computerChoice}.\n You Lose! ${computerChoice} beats ${humanChoice}`);                 
+            console.log(`Computer choice: ${computerChoice}.\nYou Lose! ${computerChoice} beats ${humanChoice}`);                 
         }
     }
 }
+
+function playGame(){
+    for(let i = 0; i< 5; i++){
+        console.log(`Round ${i+1}:\n`);
+        playRound(getHumanChoice(), getComputerChoice())
+        console.log("---------");
+    }
+
+    console.log(`Final Score.\nYou: ${humanScore}\nComputer: ${computerScore}\n`);
+     if(humanScore > computerScore){
+        console.log("Congratulations! You beat the computer\n");
+    }else if(humanScore < computerScore) {
+        console.log("Computer beats you, but can try another time!");
+    }else{
+        console.log("Almost there! It was a Draw! Yoy can try again.")
+    }    
+}
+
+playGame();

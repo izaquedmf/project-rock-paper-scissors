@@ -28,3 +28,38 @@ function getHumanChoice(){
 
 let humanScore = 0;
 let computerScore = 0;
+
+function playRound(humanChoice, computerChoice){
+    if(humanChoice === 'rock'){
+        if(computerChoice === 'paper'){
+            computerScore += 1;
+            console.log(`Computer choice: ${computerChoice}.\n You Lose! ${computerChoice} beats ${humanChoice}`);
+        }else if(computerChoice === 'scissors'){
+            humanScore += 1;
+            console.log(`Computer choice: ${computerChoice}.\n You Won! ${humanChoice} beats ${computerChoice}`);
+        }else{
+            console.log("It was a draw! Both choose Rock");
+        }
+    }else if(humanChoice === 'paper'){
+        if(computerChoice === 'paper'){
+            console.log("It was a draw! Both choose Rock");            
+        }else if(computerChoice === 'scissors'){
+            computerScore += 1;
+            console.log(`Computer choice: ${computerChoice}.\n You Lose! ${computerChoice} beats ${humanChoice}`);         
+        }else{
+            humanScore += 1;
+            console.log(`Computer choice: ${computerChoice}.\n You Won! ${humanChoice} beats ${computerChoice}`);         
+        }
+    }else{
+        if(computerChoice === 'paper'){
+            humanScore += 1;
+            console.log(`Computer choice: ${computerChoice}.\n You Won! ${humanChoice} beats ${computerChoice}`);                   
+        }else if(computerChoice === 'scissors'){
+            console.log("It was a draw! Both choose Rock");
+                     
+        }else{
+            computerScore += 1;
+            console.log(`Computer choice: ${computerChoice}.\n You Lose! ${computerChoice} beats ${humanChoice}`);                 
+        }
+    }
+}

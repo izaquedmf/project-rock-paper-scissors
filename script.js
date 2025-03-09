@@ -64,12 +64,7 @@ function playRound(humanChoice, computerChoice){
 }
 
 function playGame(){
-    for(let i = 0; i< 5; i++){
-        console.log(`Round ${i+1}:\n`);
-        playRound(getHumanChoice(), getComputerChoice())
-        console.log("---------");
-    }
-
+    
     console.log(`Final Score.\nYou: ${humanScore}\nComputer: ${computerScore}\n`);
      if(humanScore > computerScore){
         console.log("Congratulations! You beat the computer\n");

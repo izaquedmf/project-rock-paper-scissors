@@ -1,4 +1,5 @@
 
+//returns a ramdom choice from de computer to play the game
 function getComputerChoice(){
     const choice = Math.floor(Math.random()*3);
     switch (choice){
@@ -13,9 +14,11 @@ function getComputerChoice(){
     }
 }
 
+//initiate both socres
 let humanScore = 0;
 let computerScore = 0;
 
+//get the player's and computer's choice and compares who is the winner of the match. Or if it's a draw (both chose the same)
 function playRound(humanChoice, computerChoice){
     if(humanChoice === 'rock'){
         if(computerChoice === 'paper'){
@@ -51,6 +54,7 @@ function playRound(humanChoice, computerChoice){
     }
 }
 
+//starts the game and after 5 matches it shows who is the winner based on the score
 function playGame(humanChoice){
 
     playRound(humanChoice, getComputerChoice());
@@ -65,8 +69,10 @@ function playGame(humanChoice){
     }    
 }
 
+
 const buttons = document.querySelectorAll("button")
 
+//add event in each button to play the game. Player choice is taken by button id (paper, rock, scissors)
 buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
         const buttonId = event.target.id; 

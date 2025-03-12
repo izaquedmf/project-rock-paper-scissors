@@ -18,55 +18,73 @@ function getComputerChoice(){
 let humanScore = 0;
 let computerScore = 0;
 
-//get the player's and computer's choice and compares who is the winner of the match. Or if it's a draw (both chose the same)
+//get the player's and computer's choice and compares who is the winner of the match. Or if it's a draw (both chose the same). Also add the score
+//return the <p> to be added in the div
 function playRound(humanChoice, computerChoice){
+
+    const winner = document.createElement("p");
+    
     if(humanChoice === 'rock'){
         if(computerChoice === 'paper'){
             computerScore += 1;
-            console.log(`Computer choice: ${computerChoice}.\nYou Lose! ${computerChoice} beats ${humanChoice}`);
+            winner.textContent = `Computer choice: ${computerChoice}. You Lose! ${computerChoice} beats ${humanChoice}`;
         }else if(computerChoice === 'scissors'){
             humanScore += 1;
-            console.log(`Computer choice: ${computerChoice}.\nYou Won! ${humanChoice} beats ${computerChoice}`);
+            winner.textContent = `Computer choice: ${computerChoice}. You Won! ${humanChoice} beats ${computerChoice}`;
         }else{
-            console.log(`Computer choice: ${computerChoice}.\nIt was a Draw! Both chose ${humanChoice}`);
+            winner.textContent = `Computer choice: ${computerChoice}. It was a Draw! Both chose ${humanChoice}`;
         }
     }else if(humanChoice === 'paper'){
         if(computerChoice === 'paper'){
-            console.log(`Computer choice: ${computerChoice}.\nIt was a Draw! Both chose ${humanChoice}`);           
+            winner.textContent = `Computer choice: ${computerChoice}. It was a Draw! Both chose ${humanChoice}`;          
         }else if(computerChoice === 'scissors'){
             computerScore += 1;
-            console.log(`Computer choice: ${computerChoice}.\nYou Lose! ${computerChoice} beats ${humanChoice}`);         
+            winner.textContent = `Computer choice: ${computerChoice}. You Lose! ${computerChoice} beats ${humanChoice}`;       
         }else{
             humanScore += 1;
-            console.log(`Computer choice: ${computerChoice}.\nYou Won! ${humanChoice} beats ${computerChoice}`);         
+            winner.textContent = `Computer choice: ${computerChoice}. You Won! ${humanChoice} beats ${computerChoice}`;     
         }
     }else{
         if(computerChoice === 'paper'){
             humanScore += 1;
-            console.log(`Computer choice: ${computerChoice}.\nYou Won! ${humanChoice} beats ${computerChoice}`);                   
+            winner.textContent = `Computer choice: ${computerChoice}. You Won! ${humanChoice} beats ${computerChoice}`;                
         }else if(computerChoice === 'scissors'){
-            console.log(`Computer choice: ${computerChoice}.\nIt was a Draw! Both chose ${humanChoice}`);
+            winner.textContent = `Computer choice: ${computerChoice}. It was a Draw! Both chose ${humanChoice}`;
                      
         }else{
             computerScore += 1;
-            console.log(`Computer choice: ${computerChoice}.\nYou Lose! ${computerChoice} beats ${humanChoice}`);                 
+            winner.textContent = `Computer choice: ${computerChoice}. You Lose! ${computerChoice} beats ${humanChoice}`;                
         }
     }
+
+    winner.textContent += `. Player: ${humanScore}. Computer: ${computerScore}`;
+
+    return winner;
+    
 }
 
-//starts the game and after 5 matches it shows who is the winner based on the score
+//starts the game and shows who is the winner based on the score
 function playGame(humanChoice){
-
-    playRound(humanChoice, getComputerChoice());
+    const container = document.querySelector("#container");
+    const matchResult = document.createElement("div");
+    container.appendChild(matchResult);
     
-    console.log(`Final Score.\nYou: ${humanScore}\nComputer: ${computerScore}\n`);
-     if(humanScore > computerScore){
-        console.log("Congratulations! You beat the computer\n");
-    }else if(humanScore < computerScore) {
-        console.log("Computer beats you, but can try another time!");
+    //play the game until someone get 5 wins
+    if(humanScore >= 5 || computerScore >= 5){
+        const finalResult = document.createElement("p");
+
+        finalResult.textContent =`Final Score.\nYou: ${humanScore}\nComputer: ${computerScore}\n`
+        if(humanScore > computerScore){
+            finalResult.textContent += "Congratulations!!!! You beat the computer\n";
+        }else{
+            finalResult.textContent += "Computer beats you, but can try another time!";
+        }
+        matchResult.appendChild(finalResult);
+        
     }else{
-        console.log("Almost there! It was a Draw! You can try again.")
-    }    
+        let winner = playRound(humanChoice, getComputerChoice());
+        matchResult.appendChild(winner);        
+    } 
 }
 
 
